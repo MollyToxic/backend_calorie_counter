@@ -21,3 +21,19 @@ class UserView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+
+class ProductView(APIView):
+    serializer_class = ProductSerializer
+
+    def get(self, request):
+        detail = [{"title": detail.title, "proteins": detail.proteins, "fats": detail.fats,
+                   "carbohydrates": detail.carbohydrates, "calories": detail.calories}
+                  for detail in Product.objects.all()]
+        return Response(detail)
+
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
