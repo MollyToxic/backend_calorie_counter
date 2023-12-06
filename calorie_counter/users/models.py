@@ -42,3 +42,12 @@ class User(models.Model):
     ]
     target = models.CharField(max_length=15, choices=TARGET_CHOICES, default=LOSE_WEIGHT, )
     objects = models.Manager()
+
+
+class Product(models.Model):
+    title = models.CharField(verbose_name='Название продукта', max_length=20, blank=True)
+    proteins = models.FloatField(verbose_name='Белки', blank=True)
+    fats = models.FloatField(verbose_name='Жиры', blank=True)
+    carbohydrates = models.FloatField(verbose_name='Углеводы', blank=True)
+    calories = models.FloatField(verbose_name='Калории', blank=True)
+    objects = models.Manager()
